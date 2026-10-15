@@ -111,6 +111,7 @@
 		<damage min="0.0" max="0.0" />
 	</type>
 	<type name="Glowplug">
+		<damage min="0.0" max="0.0" />
 	</type>
 	<type name="CarRadiator">
 		<damage min="0.0" max="0.0" />
@@ -5241,9 +5242,6 @@
 	<type name="CivSedanWheel">
 		<damage min="0.0" max="0.0" />
 	</type>
-	<type name="GlowPlug">
-		<damage min="0.0" max="0.0" />
-	</type>
 	<type name="HatchbackDoors_CoDriver">
 		<damage min="0.0" max="0.0" />
 	</type>
@@ -5341,9 +5339,6 @@
 		<damage min="0.0" max="0.0" />
 	</type>
 	<type name="HeadlightH7">
-		<damage min="0.0" max="0.0" />
-	</type>
-	<type name="JerryCan">
 		<damage min="0.0" max="0.0" />
 	</type>
 	<type name="Motorbike_01_Wheel_1">

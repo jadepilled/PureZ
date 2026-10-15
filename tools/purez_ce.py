@@ -222,18 +222,23 @@ for name, mags in NEW_WEAPON_ENTRIES.items():
 # vehicle parts pristine: set damage on existing entries or add new ones
 def part_damage(m):
     name = m.group(1)
-    if name not in VEHICLE_PARTS:
+    part = PARTS_LC.get(name.lower())
+    if part is None:
         return m.group(0)
     block = m.group(0)
-    VEHICLE_PARTS_DONE.add(name)
+    VEHICLE_PARTS_DONE.add(part)
     bump("spawnable: vehicle part pristine")
     if "<damage" in block:
         return re.sub(r"<damage[^>]*/>", '<damage min="0.0" max="0.0" />', block, count=1)
     return block.replace(f'<type name="{name}">', f'<type name="{name}">\n\t\t<damage min="0.0" max="0.0" />', 1)
 
 VEHICLE_PARTS_DONE = set()
+PARTS_LC = {p.lower(): p for p in VEHICLE_PARTS}
 s = re.sub(r'\t<type name="([^"]+)">.*?</type>', part_damage, s, flags=re.S)
+types_lc = {n.lower() for n in types_cat}
 for p in sorted(VEHICLE_PARTS - VEHICLE_PARTS_DONE):
+    if p.lower() not in types_lc:
+        continue
     add.append(f'\t<type name="{p}">\n\t\t<damage min="0.0" max="0.0" />\n\t</type>')
     bump("spawnable: vehicle part pristine")
 
