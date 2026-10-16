@@ -17,6 +17,7 @@
     {% endif %}
   </p>
   {% if item.description %}<p class="lead">{{ item.description }}</p>{% endif %}
+  {% if item.variants %}<p class="chips variants">{% for v in item.variants %}<span class="chip" title="{{ v.cls }}">{{ v.label }}</span>{% endfor %}</p>{% endif %}
 </header>
 
 <div class="split">
@@ -138,6 +139,7 @@
     <div>
       <h3>Found in</h3>
       <p class="chips">{% for u in L.usage %}<span class="chip">{{ u | humanize }}</span>{% else %}<span class="muted">Not in buildings</span>{% endfor %}</p>
+      {% if item.mapUrl %}<p class="maplink"><a href="{{ item.mapUrl }}">Show on the map</a></p>{% endif %}
     </div>
     <dl class="facts row">
       {{ stat("Despawns after", L.lifetime | duration) }}

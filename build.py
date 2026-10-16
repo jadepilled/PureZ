@@ -34,6 +34,8 @@ CATEGORIES = [
 CAT = {c[0]: c for c in CATEGORIES}
 
 # Editorial names for script-defined conditions (scripts only have class names)
+MAP_URL = "https://map.purez.gg/"
+
 DISEASES = {  # modifier id: (name, agent, url slug)
     "mdf_cholera": ("Cholera", "cholera", "cholera"),
     "mdf_salmonella": ("Salmonella", "salmonella", "salmonella"),
@@ -93,9 +95,90 @@ def front_matter(text):
     return meta, text.strip()
 
 
+COLOUR = re.compile(r"(?i)(black|white|blue|green|red|yellow|orange|brown|gr[ae]y|beige|pink|violet|purple|olive|khaki|tan|"
+                    r"camo|desert|winter|woodland|autumn|summer|spring|navy|navyblue|lightblue|darkblue|lime|wine|"
+                    r"flecktarn|flecktran|dubok|dpm|bdu|un|ttsko|ion|\w*pattern|\w*checks?|stripes|"
+                    r"darkbrown|darkgreen|lightgreen|cream|natural|gold|bluebright|skyblue|flowers|polka|"
+                    r"blackskull|skull|pig|chain|scarred|yellowscarred)")
+MEDICAL = re.compile(r"(?i)bandage|morphine|epinephrine|saline|bloodbag|bloodtest|tetracycline|charcoal|painkiller|"
+                     r"vitamin|iodine|disinfect|splint|defibrillator|purification|chelating|startkit|thermometer|antichem")
+
+
+def family(cls):
+    """Colour variants share a page: Hoodie_Blue -> Hoodie."""
+    base, _, suffix = cls.rpartition("_")
+    return base if base and COLOUR.fullmatch(suffix) else cls
+
+
+def wiki_category(cls, t):
+    c = t.get("category")
+    if c == "clothes":
+        return "clothing"
+    if c in ("food", "tools", "containers"):
+        return "medical" if MEDICAL.search(cls) else ("food" if c == "food" else "gear")
+    if c == "explosives":
+        return "weapons"
+    if c == "weapons":
+        if re.match(r"(?i)ammo", cls):
+            return "ammunition"
+        if re.match(r"(?i)guncase", cls):
+            return "gear"
+        if re.match(r"(?i)mag_", cls) or re.search(r"(?i)optic|suppressor|bttstck|hndgrd|compensator|bayonet|light$|^nvg", cls):
+            return "attachments"
+        return "weapons"
+    return "gear"
+
+
+CALIBRES = {"45acp": ".45 ACP", "308win": ".308 Win", "357": ".357", "380": ".380", "22": ".22",
+            "12gapellets": "12ga buckshot", "00buck": "12ga buckshot", "12gaslug": "12ga slug", "12garubberslug": "12ga rubber slug",
+            "9x39ap": "9x39mm AP", "556x45": "5.56x45mm", "545x39": "5.45x39mm", "762x39": "7.62x39mm", "762x54": "7.62x54mmR",
+            "9x19": "9x19mm", "9x39": "9x39mm", "huntingbolt": "Hunting bolt", "flare": "Flare", "flareblue": "Blue flare",
+            "flaregreen": "Green flare", "flarered": "Red flare"}
+
+
+def calibre(code):
+    low = code.lower()
+    tracer = low.endswith("tracer")
+    low = low[:-6] if tracer else low
+    name = CALIBRES.get(low)
+    if not name:
+        m = re.match(r"^(\d)(\d{2})x(\d+)$", low)
+        name = f"{m.group(1)}.{m.group(2)}x{m.group(3)}mm" if m else humanize(code)
+    return name + (" tracer" if tracer else "")
+
+
+def sentence(t):
+    """Sentence case that keeps acronyms and model codes: 'Blood Bag Empty' -> 'Blood bag empty'."""
+    words = t.split(" ")
+    return " ".join(w if i == 0 or not re.fullmatch(r"[A-Z][a-z]+", w) else w.lower() for i, w in enumerate(words))
+
+
+def item_title(cls):
+    """Readable stand-in names until config display names are extracted."""
+    m = re.match(r"(?i)^Ammo_40mm_(\w+)$", cls)
+    if m:
+        return sentence(f"40mm {humanize(m.group(1))} grenade")
+    m = re.match(r"(?i)^AmmoBox_(.+?)_(\d+)rnd$", cls)
+    if m:
+        return f"{calibre(m.group(1))} ammo box, {m.group(2)} rounds"
+    m = re.match(r"(?i)^Ammo_(\w+)$", cls)
+    if m:
+        c = calibre(m.group(1))
+        return c if re.search(r"(?i)bolt|flare", c) else f"{c} rounds"
+    m = re.match(r"(?i)^Mag_(.+?)_(?:Drum)?(\d+)Rnd(?:_(\w+))?$", cls)
+    if m:
+        return f"{humanize(m.group(1))} {m.group(2)}rd {'drum' if 'drum' in cls.lower() else 'magazine'}" + (f" ({humanize(m.group(3)).lower()})" if m.group(3) else "")
+    t = humanize(cls)
+    for a, b in (("Bttstck", "Buttstock"), ("Hndgrd", "Handguard")):
+        t = t.replace(a, b)
+    return sentence(t)
+
+
 def humanize(cls):
     s = re.sub(r"_(?=[A-Z0-9])", " ", cls)
     s = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", s)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", " ", s)
+    s = re.sub(r"(?<=[a-z]{2})(?=\d)", " ", s)
     return s.replace("_", " ")
 
 
@@ -265,17 +348,56 @@ class Wiki:
                     url = "/" + slug[:-6] + "/"
                 else:
                     url = "/" + slug.lower().replace("_", "-") + "/"
+                default_title = CAT[cat][1] if slug.endswith("index") and cat in CAT else humanize(slug.split("/")[-1])
                 page = {"url": url, "meta": meta, "body": body, "category": cat, "src": rel,
-                        "cls": meta.get("class"), "title": self.title(meta["class"], meta) if meta.get("class") else meta.get("title", humanize(slug.split("/")[-1]))}
+                        "cls": meta.get("class"), "title": self.title(meta["class"], meta) if meta.get("class") else meta.get("title", default_title)}
                 self.pages.append(page)
                 if page["cls"]:
                     self.by_class[page["cls"]] = page
+        self.auto_pages()
         # script-defined conditions get pages automatically
         for mid, (name, agent, slug) in DISEASES.items():
             if mid in self.scripts.get("modifiers", {}):
                 url = f"/health/{slug}/"
                 if not any(p["url"] == url for p in self.pages):
                     self.pages.append({"url": url, "meta": {}, "body": "", "src": "", "category": "health", "disease": mid, "title": name})
+
+    def auto_pages(self):
+        """A page for every item family that spawns on PureZ, and for every vehicle type."""
+        types = self.purez.get("types", {})
+        by_base = {}
+        for cls, t in types.items():
+            if (t["nominal"] or 0) <= 0 or t["category"] in (None, "lootdispatch"):
+                continue
+            by_base.setdefault(family(cls), []).append(cls)
+        fams = {}
+        for base, members in by_base.items():  # a family takes its members' most common category
+            cats = [wiki_category(m, types[m]) for m in members]
+            fams[(base, max(set(cats), key=cats.count))] = members
+        for name, e in self.purez.get("events", {}).items():
+            if name.startswith("Vehicle") and e["active"] and e["nominal"] > 0 and e["children"]:
+                fams[(name, "vehicles")] = list(e["children"])
+        taken = {p["url"] for p in self.pages}
+        for (base, cat), members in sorted(fams.items()):
+            members.sort(key=lambda c: (-(types.get(c, {}).get("nominal") or 0), c))
+            existing = next((self.by_class[m] for m in members if m in self.by_class), None)
+            if existing:
+                existing["variants"] = members if len(members) > 1 else None
+                for m in members:
+                    self.by_class.setdefault(m, existing)
+                continue
+            rep_cls = base if base in members else members[0]
+            title = VEHICLE_NAMES.get(base) if cat == "vehicles" else self.title(rep_cls, {"title": None}) if self.cfg(rep_cls)[1] else item_title(base)
+            slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+            url = f"/{cat}/{slug}/"
+            if url in taken:
+                url = f"/{cat}/{slug}-{re.sub(r'[^a-z0-9]+', '-', base.lower())}/"
+            taken.add(url)
+            page = {"url": url, "meta": {}, "body": "", "category": cat, "src": "", "cls": rep_cls, "title": title,
+                    "variants": members if len(members) > 1 else None, "auto": True}
+            self.pages.append(page)
+            for m in members:
+                self.by_class[m] = page
 
     def render(self, env):
         if os.path.exists(OUT):
@@ -321,9 +443,20 @@ class Wiki:
         cls = p.get("cls")
         if cls:
             sec, c = self.cfg(cls)
+            loot = None if self.vehicle(cls) else self.loot(cls)
+            variants = None
+            if p.get("variants"):
+                types = self.purez.get("types", {})
+                base = family(cls)
+                variants = [{"cls": v, "label": humanize(v[len(base):].lstrip("_")) if v.startswith(base) and v != base else "Standard",
+                             "nominal": (types.get(v) or {}).get("nominal")} for v in p["variants"]]
+                if loot:
+                    loot["nominal"] = sum((types.get(v) or {}).get("nominal") or 0 for v in p["variants"])
+                    loot["min"] = sum((types.get(v) or {}).get("min") or 0 for v in p["variants"])
+            map_url = f"{MAP_URL}#nasdara?i={cls}&l=buildings" if loot and loot["usage"] and loot["spawns"] else None
             ctx["item"] = {
                 "cls": cls, "config": c, "description": p["meta"].get("summary") or (c or {}).get("descriptionShort"),
-                "loot": None if self.vehicle(cls) else self.loot(cls), "weapon": self.weapon(cls), "ballistics": self.ballistics(cls),
+                "loot": loot, "variants": variants, "mapUrl": map_url, "weapon": self.weapon(cls), "ballistics": self.ballistics(cls),
                 "medical": self.medical(cls), "recipes": self.recipes_for(cls), "vehicle": self.vehicle(cls),
                 "media": media(p["category"], cls), "specs": specs(c),
             }

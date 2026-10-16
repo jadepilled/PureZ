@@ -6,9 +6,10 @@
 </header>
 {% if body %}<section class="prose">{{ body | safe }}</section>{% endif %}
 {% if children %}
+{% if children | length > 12 %}<input class="filter" type="search" placeholder="Filter {{ children | length }} pages" aria-label="Filter" data-filter=".list li">{% endif %}
 <ul class="list">
   {% for c in children %}
-  <li><a href="{{ c.url }}"><span>{{ c.title }}</span>{% if c.cls %}<code>{{ c.cls }}</code>{% endif %}</a></li>
+  <li data-text="{{ (c.title ~ ' ' ~ (c.cls or '')) | lower }}"><a href="{{ c.url }}"><span>{{ c.title }}</span>{% if c.variants %}<small class="muted">{{ c.variants | length }} colours</small>{% endif %}</a></li>
   {% endfor %}
 </ul>
 {% else %}

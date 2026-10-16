@@ -208,3 +208,7 @@ table.data { width: 100%; border-collapse: collapse; font-variant-numeric: tabul
 .tiles, .facts, .carried, .recoil { border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .tile, .stat, .carried li, .recoil figure { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .facts:not(:has(.stat)) { display: none; }
+.variants { margin-top: 0.9rem; }
+.maplink { margin-top: 0.8rem; }
+.maplink a { font-weight: 500; }
+.list small { white-space: nowrap; }

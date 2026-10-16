@@ -541,6 +541,22 @@ def export(root, table):
                 rec["DamageApplied"] = plain(dmg, table, 1)
             data["ammo"][c.name] = rec
 
+    # place names per world (CfgWorlds <World> Names), for map labels
+    worlds = root.children.get("cfgworlds")
+    data["places"] = {}
+    if worlds is not None:
+        for w in worlds.children.values():
+            names = w.sub("Names")
+            if w.extern or names is None:
+                continue
+            places = []
+            for n in names.all_children().values():
+                pos, label = n.get("position"), tr(n.get("name"), table)
+                if isinstance(pos, list) and len(pos) >= 2 and label:
+                    places.append({"n": label, "t": n.get("type") or "", "x": round(pos[0]), "z": round(pos[1])})
+            if places:
+                data["places"][w.name] = places
+
     # ballistics per magazine (ammo piles are magazines too)
     for name, m in data["magazines"].items():
         a = data["ammo"].get(m.get("ammo") or "")
