@@ -1,0 +1,17 @@
+[
+  {
+    "id": "nasdara",
+    "name": "PureZ | Nasdara | 1PP | Vanilla+",
+    "map": "Nasdara",
+    "status": "live",
+    "ip": "169.155.125.13",
+    "port": 2302,
+    "queryPort": 2303
+  },
+  {
+    "id": "chernarus",
+    "name": "PureZ | Chernarus | 1PP | Vanilla+",
+    "map": "Chernarus",
+    "status": "soon"
+  }
+]
