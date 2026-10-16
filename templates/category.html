@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block main %}
+<header class="page-head">
+  <h1>{{ cat[1] }}</h1>
+  <p class="lead">{{ cat[2] }}</p>
+</header>
+{% if body %}<section class="prose">{{ body | safe }}</section>{% endif %}
+{% if children %}
+<ul class="list">
+  {% for c in children %}
+  <li><a href="{{ c.url }}"><span>{{ c.title }}</span>{% if c.cls %}<code>{{ c.cls }}</code>{% endif %}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="muted">Nothing here yet.</p>
+{% endif %}
+{% endblock %}

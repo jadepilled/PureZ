@@ -1,0 +1,16 @@
+{% macro crumbs(cat, page) %}
+<p class="crumbs">{% if cat %}<a href="/{{ cat[0] }}/">{{ cat[1] }}</a>{% else %}<a href="/">Wiki</a>{% endif %}</p>
+{% endmacro %}
+
+{% macro itemlink(l) %}{% if l.url %}<a href="{{ l.url }}">{{ l.title }}</a>{% else %}<span title="{{ l.cls }}">{{ l.title }}</span>{% endif %}{% endmacro %}
+
+{% macro condition(c, label=None) %}
+<div class="cond" aria-label="Spawn condition: {{ c.label }}">
+  {% for s in c.levels %}<span class="{{ 'on' if s.on }}" title="{{ s.name }}"></span>{% endfor %}
+</div>
+<p class="cond-label">{{ c.label }}{% if label %} <span class="muted">{{ label }}</span>{% endif %}</p>
+{% endmacro %}
+
+{% macro stat(label, value, sub=None) %}
+<div class="stat"><dt>{{ label }}</dt><dd>{{ value }}{% if sub %} <small>{{ sub }}</small>{% endif %}</dd></div>
+{% endmacro %}
