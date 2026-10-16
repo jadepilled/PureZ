@@ -17,6 +17,7 @@ def write(p, s):
         f.write(s)
 
 LOOT_MULT = 1.3
+ZOMBIE_MULT = 1.2
 LOOT_CATS = {"tools", "food", "clothes", "weapons", "containers"}
 HOARDERS = {"Barrel_Blue", "Barrel_Green", "Barrel_Red", "Barrel_Yellow", "CarTent", "LargeTent",
             "MediumTent", "MediumTent_Green", "MediumTent_Orange", "PartyTent", "PartyTent_Blue",
@@ -54,6 +55,12 @@ NEW_WEAPON_ENTRIES = {
     "Luger": [["Mag_Luger_8Rnd"]],
     "MP18": [["Mag_MP18_Drum32Rnd"]],
 }
+
+OPTIC_LONG = 0.65     # optics are a common attachment
+OPTIC_PISTOL = 0.35
+SUPPRESSOR = 0.05     # suppressors are rare
+# Suppressor groups for weapons whose vanilla entry has none
+ADD_SUPPRESSOR = {"AK101": "AK_Suppressor", "M4A1": "M4_Suppressor"}
 
 WEAPON_DAMAGE = ('<damage min="0.15" max="0.45" />')  # pristine or worn only
 
@@ -157,9 +164,9 @@ def weapon_groups(name, groups):
         if k == "mag":
             chance = 1.0
         elif k == "optic":
-            chance = max(chance, 0.35 if pistol else 0.85)
+            chance = max(chance, OPTIC_PISTOL if pistol else OPTIC_LONG)  # keep always-on base sights
         elif k == "supp":
-            chance = min(max(chance, chance * 1.5), max(chance, 0.30))
+            chance = SUPPRESSOR
         elif k == "comp":
             chance = min(max(chance, chance * 2), max(chance, 0.40))
         elif k == "light":
@@ -193,6 +200,8 @@ def edit_spawnable(m):
 
     if fixed.lower() in FIREARMS_LC:
         bump("spawnable: firearm condition/attachments")
+        if fixed in ADD_SUPPRESSOR and not any(kind(i) == "supp" for _, _, its in groups for i, _ in its):
+            groups.append(("attachments", SUPPRESSOR, [(ADD_SUPPRESSOR[fixed], 1.0)]))
         return render_type(fixed, WEAPON_DAMAGE, weapon_groups(fixed, groups), [])
     if fixed in VEHICLES:
         bump("spawnable: vehicle pristine + all parts")
@@ -254,8 +263,68 @@ def preset(m):
     bump("presets: cargo chance raised")
     return m.group(0).replace(f'chance="{m.group(1)}"', f'chance="{fmt(min(1.0, chance * LOOT_MULT))}"', 1)
 
+# Zombie gear presets: add the map's other spawning colour variants of each item, plus
+# role-matched vanilla families. Each family keeps its original share of the preset's weight.
+GEAR_ADD = {
+    "hatsFarm": ["CowboyHat", "Bandana"],
+    "hatsVillage": ["CowboyHat", "Bandana"],
+    "hatsCity": ["Bandana"],
+    "hatsIndustrial": ["WeldingMask"],
+    "hatsArmy": ["MilitaryCap", "BoonieHat_Desert", "BoonieHat_DPM", "BoonieHat_Flecktran",
+                 "BoonieHat_Olive", "BoonieHat_Tan", "PilotkaCap"],
+    "vestsArmy": ["HighCapacityVest_Black", "HighCapacityVest_Olive"],
+    "bagsArmy": ["CoyoteBag"],
+    "bagsCity": ["ChildBag"],
+    "bagsVillage": ["ChildBag"],
+}
+GEAR_PRESETS = set(GEAR_ADD) | {"bagsHunter", "vestsHunter", "hatsCitySkate", "hatsMedic", "hatsFirefighter",
+                                "hatsMotorbike", "vestsPress", "headtorches", "hatsPolice", "hatsPrisoner",
+                                "vestsPolice", "vestsIndustrial"}
+types_nom = {t.get("name"): int(t.find("nominal").text) for t in ET.fromstring(read("db/types.xml"))}
+spawning = {n.lower(): n for n, v in types_nom.items() if v > 0}
+canon = {n.lower(): n for n in types_nom}
+
+def family_of(item):
+    return item.split("_")[0] if "_" in item else item
+
+def members(base, exact=False):
+    if exact or "_" in base:
+        return [spawning[base.lower()]] if base.lower() in spawning else []
+    return sorted(n for l, n in spawning.items() if l == base.lower() or l.startswith(base.lower() + "_"))
+
+def gear_preset(m):
+    name, head, body = m.group(2), m.group(1), m.group(3)
+    if name not in GEAR_PRESETS:
+        return m.group(0)
+    items = re.findall(r'<item name="([^"]+)" chance="([\d.]+)"', body)
+    fams = {}
+    for i, c in items:
+        i = canon.get(i.lower(), i)
+        fams.setdefault(family_of(i), {})[i] = float(c)
+    weights = {}
+    for fam, its in fams.items():
+        total = sum(its.values())
+        group = set(its) | set(members(fam))
+        for i in group:
+            weights[i] = weights.get(i, 0) + total / len(group)
+    avg = sum(sum(v.values()) for v in fams.values()) / len(fams)
+    added = {}
+    for add in GEAR_ADD.get(name, []):
+        for g in members(add, exact="_" in add):
+            if g not in weights:
+                added.setdefault(family_of(g), []).append(g)
+    for group in added.values():
+        for i in group:
+            weights[i] = avg / len(group)
+    if len(weights) == len(items):
+        return m.group(0)
+    bump("presets: zombie gear variety widened")
+    lines = "".join(f'\t\t\t\t<item name="{i}" chance="{w:.3f}" />\n' for i, w in weights.items())
+    return f"{head}\n{lines}\t\t</attachments>"
+
 s = read("cfgrandompresets.xml")
 s = re.sub(r'<cargo chance="([\d.]+)" name="([^"]+)">', preset, s)
+s = re.sub(r'(\t\t<attachments chance="[\d.]+" name="([^"]+)">)\n(.*?)\t\t</attachments>', gear_preset, s, flags=re.S)
 write("cfgrandompresets.xml", s)
 
 # ---------------------------------------------------------------- events.xml
@@ -284,7 +353,9 @@ write("db/events.xml", s)
 # ---------------------------------------------------------------- globals.xml
 s = read("db/globals.xml")
 s = s.replace('name="LootDamageMax" type="1" value="0.82"', 'name="LootDamageMax" type="1" value="0.65"')
-s = s.replace('name="ZombieMaxCount" type="0" value="1000"', 'name="ZombieMaxCount" type="0" value="1500"')
+s = s.replace('name="ZombieMaxCount" type="0" value="1000"', 'name="ZombieMaxCount" type="0" value="1200"')
+for var in ("TimeLogin", "TimeHopping", "TimePenalty"):  # no wait before login
+    s = re.sub(rf'(name="{var}" type="0" value=")\d+(")', r"\g<1>0\2", s)
 write("db/globals.xml", s)
 
 # ---------------------------------------------------------------- zombie_territories.xml
@@ -292,7 +363,7 @@ def zone(m):
     z = m.group(0)
     dmin, dmax = int(m.group(1)), int(m.group(2))
     bump("zombies: zone density raised")
-    return z.replace(f'dmin="{dmin}" dmax="{dmax}"', f'dmin="{rnd(dmin * 1.5)}" dmax="{rnd(dmax * 1.5)}"')
+    return z.replace(f'dmin="{dmin}" dmax="{dmax}"', f'dmin="{rnd(dmin * ZOMBIE_MULT)}" dmax="{rnd(dmax * ZOMBIE_MULT)}"')
 
 s = read("env/zombie_territories.xml")
 s = s.replace('name="InfedctedReligious"', 'name="InfectedReligious"')

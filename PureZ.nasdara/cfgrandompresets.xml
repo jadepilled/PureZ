@@ -267,51 +267,106 @@
 
 		<!--FARM ATTACHMENTS-->
 		<attachments chance="0.20" name="hatsFarm">
-			<item name="BoonieHat_Blue" chance="0.0625" />
-			<item name="BoonieHat_Black" chance="0.0625" />
-			<item name="BoonieHat_Red" chance="0.0625" />
-			<item name="BaseballCap_Blue" chance="0.0625" />
-			<item name="BaseballCap_Beige" chance="0.0625" />
-			<item name="BaseballCap_Black" chance="0.0625" />
-			<item name="BaseballCap_Camo" chance="0.0625" />
-			<item name="FlatCap_Black" chance="0.0625" />
-			<item name="FlatCap_Blue" chance="0.0625" />
-			<item name="FlatCap_Red" chance="0.0625" />
-			<item name="FlatCap_GreyCheck" chance="0.0625" />
-			<item name="PakolHat_Beige" chance="0.0625" />
-			<item name="PakolHat_Black" chance="0.0625" />
-			<item name="PakolHat_Brown" chance="0.0625" />
-			<item name="PakolHat_Grey" chance="0.0625" />
-			<item name="PakolHat_White" chance="0.0625" />
+				<item name="BoonieHat_Flecktran" chance="0.017" />
+				<item name="BoonieHat_Blue" chance="0.017" />
+				<item name="BoonieHat_Dubok" chance="0.017" />
+				<item name="BoonieHat_DPM" chance="0.017" />
+				<item name="BoonieHat_Red" chance="0.017" />
+				<item name="BoonieHat_Desert" chance="0.017" />
+				<item name="BoonieHat_NavyBlue" chance="0.017" />
+				<item name="BoonieHat_Black" chance="0.017" />
+				<item name="BoonieHat_Tan" chance="0.017" />
+				<item name="BoonieHat_Orange" chance="0.017" />
+				<item name="BoonieHat_Olive" chance="0.017" />
+				<item name="BaseballCap_Olive" chance="0.028" />
+				<item name="BaseballCap_CMMG_Pink" chance="0.028" />
+				<item name="BaseballCap_CMMG_Black" chance="0.028" />
+				<item name="BaseballCap_Red" chance="0.028" />
+				<item name="BaseballCap_Beige" chance="0.028" />
+				<item name="BaseballCap_Blue" chance="0.028" />
+				<item name="BaseballCap_Camo" chance="0.028" />
+				<item name="BaseballCap_Pink" chance="0.028" />
+				<item name="BaseballCap_Black" chance="0.028" />
+				<item name="FlatCap_GreyCheck" chance="0.031" />
+				<item name="FlatCap_BlackCheck" chance="0.031" />
+				<item name="FlatCap_Red" chance="0.031" />
+				<item name="FlatCap_BrownCheck" chance="0.031" />
+				<item name="FlatCap_Brown" chance="0.031" />
+				<item name="FlatCap_Black" chance="0.031" />
+				<item name="FlatCap_Grey" chance="0.031" />
+				<item name="FlatCap_Blue" chance="0.031" />
+				<item name="PakolHat_Grey" chance="0.062" />
+				<item name="PakolHat_Beige" chance="0.062" />
+				<item name="PakolHat_Black" chance="0.062" />
+				<item name="PakolHat_Brown" chance="0.062" />
+				<item name="PakolHat_White" chance="0.062" />
+				<item name="CowboyHat_Brown" chance="0.062" />
+				<item name="CowboyHat_black" chance="0.062" />
+				<item name="CowboyHat_darkBrown" chance="0.062" />
+				<item name="CowboyHat_green" chance="0.062" />
+				<item name="Bandana_Blackpattern" chance="0.050" />
+				<item name="Bandana_Camopattern" chance="0.050" />
+				<item name="Bandana_Greenpattern" chance="0.050" />
+				<item name="Bandana_Polkapattern" chance="0.050" />
+				<item name="Bandana_Redpattern" chance="0.050" />
 		</attachments>
 		<attachments chance="0.1" name="bagsHunter">
-			<item name="ArmyPouch_Beige" chance="0.35" />
-			<item name="ArmyPouch_Green" chance="0.35" />
-			<item name="CourierBag" chance="0.20" />
-			<item name="HuntingBag" chance="0.10" />
+				<item name="ArmyPouch_Black" chance="0.175" />
+				<item name="ArmyPouch_Green" chance="0.175" />
+				<item name="ArmyPouch_Beige" chance="0.175" />
+				<item name="ArmyPouch_Camo" chance="0.175" />
+				<item name="CourierBag" chance="0.200" />
+				<item name="HuntingBag" chance="0.100" />
 		</attachments>
 		<attachments chance="0.20" name="vestsHunter">
-			<item name="HuntingVest" chance="0.50" />
-			<item name="ChestHolster" chance="0.50" />
+				<item name="HuntingVest" chance="0.250" />
+				<item name="HuntingVest_Desert" chance="0.250" />
+				<item name="ChestHolster" chance="0.500" />
 		</attachments>
 		<!--VILLAGE ATTACHMENTS-->
 		<attachments chance="0.20" name="hatsVillage">
-			<item name="BoonieHat_Blue" chance="0.0625" />
-			<item name="BoonieHat_Black" chance="0.0625" />
-			<item name="BoonieHat_Red" chance="0.0625" />
-			<item name="BaseballCap_Blue" chance="0.0625" />
-			<item name="BaseballCap_Beige" chance="0.0625" />
-			<item name="BaseballCap_Black" chance="0.0625" />
-			<item name="BaseballCap_Camo" chance="0.0625" />
-			<item name="FlatCap_Black" chance="0.0625" />
-			<item name="FlatCap_Blue" chance="0.0625" />
-			<item name="FlatCap_Red" chance="0.0625" />
-			<item name="FlatCap_GreyCheck" chance="0.0625" />
-			<item name="PakolHat_Beige" chance="0.0625" />
-			<item name="PakolHat_Black" chance="0.0625" />
-			<item name="PakolHat_Brown" chance="0.0625" />
-			<item name="PakolHat_Grey" chance="0.0625" />
-			<item name="PakolHat_White" chance="0.0625" />
+				<item name="BoonieHat_Flecktran" chance="0.017" />
+				<item name="BoonieHat_Blue" chance="0.017" />
+				<item name="BoonieHat_Dubok" chance="0.017" />
+				<item name="BoonieHat_DPM" chance="0.017" />
+				<item name="BoonieHat_Red" chance="0.017" />
+				<item name="BoonieHat_Desert" chance="0.017" />
+				<item name="BoonieHat_NavyBlue" chance="0.017" />
+				<item name="BoonieHat_Black" chance="0.017" />
+				<item name="BoonieHat_Tan" chance="0.017" />
+				<item name="BoonieHat_Orange" chance="0.017" />
+				<item name="BoonieHat_Olive" chance="0.017" />
+				<item name="BaseballCap_Olive" chance="0.028" />
+				<item name="BaseballCap_CMMG_Pink" chance="0.028" />
+				<item name="BaseballCap_CMMG_Black" chance="0.028" />
+				<item name="BaseballCap_Red" chance="0.028" />
+				<item name="BaseballCap_Beige" chance="0.028" />
+				<item name="BaseballCap_Blue" chance="0.028" />
+				<item name="BaseballCap_Camo" chance="0.028" />
+				<item name="BaseballCap_Pink" chance="0.028" />
+				<item name="BaseballCap_Black" chance="0.028" />
+				<item name="FlatCap_GreyCheck" chance="0.031" />
+				<item name="FlatCap_BlackCheck" chance="0.031" />
+				<item name="FlatCap_Red" chance="0.031" />
+				<item name="FlatCap_BrownCheck" chance="0.031" />
+				<item name="FlatCap_Brown" chance="0.031" />
+				<item name="FlatCap_Black" chance="0.031" />
+				<item name="FlatCap_Grey" chance="0.031" />
+				<item name="FlatCap_Blue" chance="0.031" />
+				<item name="PakolHat_Grey" chance="0.062" />
+				<item name="PakolHat_Beige" chance="0.062" />
+				<item name="PakolHat_Black" chance="0.062" />
+				<item name="PakolHat_Brown" chance="0.062" />
+				<item name="PakolHat_White" chance="0.062" />
+				<item name="CowboyHat_Brown" chance="0.062" />
+				<item name="CowboyHat_black" chance="0.062" />
+				<item name="CowboyHat_darkBrown" chance="0.062" />
+				<item name="CowboyHat_green" chance="0.062" />
+				<item name="Bandana_Blackpattern" chance="0.050" />
+				<item name="Bandana_Camopattern" chance="0.050" />
+				<item name="Bandana_Greenpattern" chance="0.050" />
+				<item name="Bandana_Polkapattern" chance="0.050" />
+				<item name="Bandana_Redpattern" chance="0.050" />
 		</attachments>
 		<attachments chance="0.20" name="handsVillage">
 				<item name="WoodAxe" chance="0.1" />
@@ -319,10 +374,14 @@
 				<item name="Shovel" chance="0.8" />
 		</attachments>
 		<attachments chance="0.1" name="bagsVillage">
-				<item name="Slingbag_Black" chance="0.30" />
-				<item name="SlingBag_Gray" chance="0.30" />
-				<item name="SlingBag_Brown" chance="0.30" />
-				<item name="CanvasBag_Olive" chance="0.10" />
+				<item name="Slingbag_Gray" chance="0.300" />
+				<item name="Slingbag_Black" chance="0.300" />
+				<item name="Slingbag_Brown" chance="0.300" />
+				<item name="CanvasBag_Medical" chance="0.050" />
+				<item name="CanvasBag_Olive" chance="0.050" />
+				<item name="ChildBag_Blue" chance="0.167" />
+				<item name="ChildBag_Green" chance="0.167" />
+				<item name="ChildBag_Red" chance="0.167" />
 		</attachments>
 		<attachments chance="0.00" name="glassesVillage"> <!--was chance="0.30"; removed coz of attachment slot is missing -->
 			<item name="ThickFramesGlasses" chance="0.10" />
@@ -332,22 +391,44 @@
 
 	<!--CITY ATTACHMENTS-->
 		<attachments chance="0.20" name="hatsCity">
-			<item name="BoonieHat_Blue" chance="0.0625" />
-			<item name="BoonieHat_Black" chance="0.0625" />
-			<item name="BoonieHat_Red" chance="0.0625" />
-			<item name="BaseballCap_Blue" chance="0.0625" />
-			<item name="BaseballCap_Beige" chance="0.0625" />
-			<item name="BaseballCap_Black" chance="0.0625" />
-			<item name="BaseballCap_Camo" chance="0.0625" />
-			<item name="FlatCap_Black" chance="0.0625" />
-			<item name="FlatCap_Blue" chance="0.0625" />
-			<item name="FlatCap_Red" chance="0.0625" />
-			<item name="FlatCap_GreyCheck" chance="0.0625" />
-			<item name="PakolHat_Beige" chance="0.0625" />
-			<item name="PakolHat_Black" chance="0.0625" />
-			<item name="PakolHat_Brown" chance="0.0625" />
-			<item name="PakolHat_Grey" chance="0.0625" />
-			<item name="PakolHat_White" chance="0.0625" />
+				<item name="BoonieHat_Flecktran" chance="0.017" />
+				<item name="BoonieHat_Blue" chance="0.017" />
+				<item name="BoonieHat_Dubok" chance="0.017" />
+				<item name="BoonieHat_DPM" chance="0.017" />
+				<item name="BoonieHat_Red" chance="0.017" />
+				<item name="BoonieHat_Desert" chance="0.017" />
+				<item name="BoonieHat_NavyBlue" chance="0.017" />
+				<item name="BoonieHat_Black" chance="0.017" />
+				<item name="BoonieHat_Tan" chance="0.017" />
+				<item name="BoonieHat_Orange" chance="0.017" />
+				<item name="BoonieHat_Olive" chance="0.017" />
+				<item name="BaseballCap_Olive" chance="0.028" />
+				<item name="BaseballCap_CMMG_Pink" chance="0.028" />
+				<item name="BaseballCap_CMMG_Black" chance="0.028" />
+				<item name="BaseballCap_Red" chance="0.028" />
+				<item name="BaseballCap_Beige" chance="0.028" />
+				<item name="BaseballCap_Blue" chance="0.028" />
+				<item name="BaseballCap_Camo" chance="0.028" />
+				<item name="BaseballCap_Pink" chance="0.028" />
+				<item name="BaseballCap_Black" chance="0.028" />
+				<item name="FlatCap_GreyCheck" chance="0.031" />
+				<item name="FlatCap_BlackCheck" chance="0.031" />
+				<item name="FlatCap_Red" chance="0.031" />
+				<item name="FlatCap_BrownCheck" chance="0.031" />
+				<item name="FlatCap_Brown" chance="0.031" />
+				<item name="FlatCap_Black" chance="0.031" />
+				<item name="FlatCap_Grey" chance="0.031" />
+				<item name="FlatCap_Blue" chance="0.031" />
+				<item name="PakolHat_Grey" chance="0.062" />
+				<item name="PakolHat_Beige" chance="0.062" />
+				<item name="PakolHat_Black" chance="0.062" />
+				<item name="PakolHat_Brown" chance="0.062" />
+				<item name="PakolHat_White" chance="0.062" />
+				<item name="Bandana_Blackpattern" chance="0.050" />
+				<item name="Bandana_Camopattern" chance="0.050" />
+				<item name="Bandana_Greenpattern" chance="0.050" />
+				<item name="Bandana_Polkapattern" chance="0.050" />
+				<item name="Bandana_Redpattern" chance="0.050" />
 		</attachments>
 		<attachments chance="0.10" name="handsCity">
 				<item name="NailedBaseballBat" chance="1.0" />
@@ -364,14 +445,18 @@
 			<item name="SportGlasses_Orange" chance="0.10" />
 		</attachments>
 		<attachments chance="0.1" name="bagsCity">
-			<item name="Slingbag_Gray" chance="0.20" />
-			<item name="Slingbag_Brown" chance="0.20" />
-			<item name="Slingbag_Black" chance="0.20" />
-			<item name="CanvasBag_Olive" chance="0.20" />
-			<item name="TaloonBag_Orange" chance="0.05" />
-			<item name="TaloonBag_Blue" chance="0.05" />
-			<item name="TaloonBag_Violet" chance="0.05" />
-			<item name="TaloonBag_Green" chance="0.05" />
+				<item name="Slingbag_Gray" chance="0.200" />
+				<item name="Slingbag_Black" chance="0.200" />
+				<item name="Slingbag_Brown" chance="0.200" />
+				<item name="CanvasBag_Medical" chance="0.100" />
+				<item name="CanvasBag_Olive" chance="0.100" />
+				<item name="TaloonBag_Blue" chance="0.050" />
+				<item name="TaloonBag_Orange" chance="0.050" />
+				<item name="TaloonBag_Violet" chance="0.050" />
+				<item name="TaloonBag_Green" chance="0.050" />
+				<item name="ChildBag_Blue" chance="0.111" />
+				<item name="ChildBag_Green" chance="0.111" />
+				<item name="ChildBag_Red" chance="0.111" />
 		</attachments>
 		<attachments chance="0.30" name="hatsCitySkate">
 				<item name="SkateHelmet_Blue" chance="0.20" />
@@ -382,17 +467,18 @@
 		</attachments>
 		<!--INDUSTRIAL ATTACHMENTS-->
 		<attachments chance="0.30" name="hatsIndustrial">
-			<item name="ConstructionHelmet_Blue" chance="0.09" />
-			<item name="ConstructionHelmet_Lime" chance="0.09" />
-			<item name="ConstructionHelmet_Orange" chance="0.09" />
-			<item name="ConstructionHelmet_Red" chance="0.09" />
-			<item name="ConstructionHelmet_White" chance="0.09" />
-			<item name="ConstructionHelmet_Yellow" chance="0.09" />
-			<item name="PakolHat_Beige" chance="0.09" />
-			<item name="PakolHat_Black" chance="0.09" />
-			<item name="PakolHat_Brown" chance="0.09" />
-			<item name="PakolHat_Grey" chance="0.09" />
-			<item name="PakolHat_White" chance="0.09" />
+				<item name="ConstructionHelmet_Orange" chance="0.090" />
+				<item name="ConstructionHelmet_White" chance="0.090" />
+				<item name="ConstructionHelmet_Yellow" chance="0.090" />
+				<item name="ConstructionHelmet_Red" chance="0.090" />
+				<item name="ConstructionHelmet_Blue" chance="0.090" />
+				<item name="ConstructionHelmet_Lime" chance="0.090" />
+				<item name="PakolHat_Grey" chance="0.090" />
+				<item name="PakolHat_Beige" chance="0.090" />
+				<item name="PakolHat_Black" chance="0.090" />
+				<item name="PakolHat_Brown" chance="0.090" />
+				<item name="PakolHat_White" chance="0.090" />
+				<item name="WeldingMask" chance="0.495" />
 		</attachments>
 		<attachments chance="0.15" name="handsIndustrial">
 				<item name="Pipe" chance="0.15" />
@@ -419,29 +505,56 @@
 
 		<!--ARMY ATTACHMENTS-->
 		<attachments chance="0.60" name="hatsArmy">
-			<item name="MilitaryCap_Desert" chance="0.5" />
-			<item name="MilitaryBeret_TK" chance="0.5" />
+				<item name="MilitaryCap_Woodland" chance="0.167" />
+				<item name="MilitaryCap_BDU" chance="0.167" />
+				<item name="MilitaryCap_Desert" chance="0.167" />
+				<item name="MilitaryBeret_CDF" chance="0.083" />
+				<item name="MilitaryBeret_NZ" chance="0.083" />
+				<item name="MilitaryBeret_UN" chance="0.083" />
+				<item name="MilitaryBeret_TK" chance="0.083" />
+				<item name="MilitaryBeret_ChDKZ" chance="0.083" />
+				<item name="MilitaryBeret_Red" chance="0.083" />
+				<item name="BoonieHat_Desert" chance="0.100" />
+				<item name="BoonieHat_DPM" chance="0.100" />
+				<item name="BoonieHat_Flecktran" chance="0.100" />
+				<item name="BoonieHat_Olive" chance="0.100" />
+				<item name="BoonieHat_Tan" chance="0.100" />
+				<item name="PilotkaCap" chance="0.500" />
 		</attachments>
 		<attachments chance="0.00" name="glassesArmy"> <!--was chance="0.10"; removed coz of attachment slot is missing -->
 			<item name="TacticalGoggles" chance="0.10" />
 			<item name="AviatorGlasses" chance="0.25" />
 		</attachments>
 		<attachments chance="0.20" name="vestsArmy">
-			<item name="UKAssVest_Black" chance="0.25" />
-			<item name="ChestRigVest_Tan" chance="0.25" />
-			<item name="UKAssVest_Khaki" chance="0.25" />
-			<item name="SmershVest" chance="0.25" />
+				<item name="UKAssVest_Black" chance="0.100" />
+				<item name="UKAssVest_Camo" chance="0.100" />
+				<item name="UKAssVest_Khaki" chance="0.100" />
+				<item name="UKAssVest_Olive" chance="0.100" />
+				<item name="UKAssVest_Desert" chance="0.100" />
+				<item name="ChestRigVest_Khaki" chance="0.083" />
+				<item name="ChestRigVest_Tan" chance="0.083" />
+				<item name="ChestRigVest_Olive" chance="0.083" />
+				<item name="SmershVest" chance="0.250" />
+				<item name="HighCapacityVest_Black" chance="0.167" />
+				<item name="HighCapacityVest_Olive" chance="0.167" />
 		</attachments>
 		<attachments chance="0.08" name="bagsArmy">
-			<item name="DuffelBagSmall_Camo" chance="0.10" />
-			<item name="DuffelBagSmall_Green" chance="0.10" />
-			<item name="DuffelBagSmall_Medical" chance="0.10" />
-			<item name="ArmyPouch_Black" chance="0.10" />
-			<item name="ArmyPouch_Camo" chance="0.10" />
-			<item name="AssaultBag_Green" chance="0.10" />
-			<item name="AssaultBag_Ttsko" chance="0.10" />
-			<item name="AssaultBag_Black" chance="0.10" />
-			<item name="TortillaBag" chance="0.10" />
+				<item name="DuffelBagSmall_Camo" chance="0.100" />
+				<item name="DuffelBagSmall_Medical" chance="0.100" />
+				<item name="DuffelBagSmall_Green" chance="0.100" />
+				<item name="ArmyPouch_Black" chance="0.050" />
+				<item name="ArmyPouch_Green" chance="0.050" />
+				<item name="ArmyPouch_Beige" chance="0.050" />
+				<item name="ArmyPouch_Camo" chance="0.050" />
+				<item name="AssaultBag_Ttsko" chance="0.075" />
+				<item name="AssaultBag_Desert" chance="0.075" />
+				<item name="AssaultBag_Black" chance="0.075" />
+				<item name="AssaultBag_Green" chance="0.075" />
+				<item name="TortillaBag" chance="0.050" />
+				<item name="TortillaBag_Desert" chance="0.050" />
+				<item name="CoyoteBag_Brown" chance="0.075" />
+				<item name="CoyoteBag_Desert" chance="0.075" />
+				<item name="CoyoteBag_Green" chance="0.075" />
 		</attachments>
 		<attachments chance="1.00" name="HeavyArmorArmy">
 			<item name="PlateCarrierVest" chance="1.00" />
@@ -469,20 +582,22 @@
 
 		<!--UNIVERSAL ATTACHMENTS-->
 		<attachments chance="0.20" name="hatsMotorbike">
-				<item name="MotoHelmet_Black" chance="0.10" />
-				<item name="MotoHelmet_Blue" chance="0.10" />
-				<item name="MotoHelmet_Green" chance="0.10" />
-				<item name="MotoHelmet_Grey" chance="0.10" />
-				<item name="MotoHelmet_Lime" chance="0.10" />
-				<item name="MotoHelmet_Red" chance="0.10" />
-				<item name="MotoHelmet_White" chance="0.10" />
-				<item name="DarkMotoHelmet_Black" chance="0.05" />
-				<item name="DarkMotoHelmet_Blue" chance="0.05" />
-				<item name="DarkMotoHelmet_Green" chance="0.05" />
-				<item name="DarkMotoHelmet_Grey" chance="0.05" />
-				<item name="DarkMotoHelmet_Lime" chance="0.05" />
-				<item name="DarkMotoHelmet_Red" chance="0.05" />
-				<item name="DarkMotoHelmet_White" chance="0.05" />
+				<item name="MotoHelmet_White" chance="0.088" />
+				<item name="MotoHelmet_Green" chance="0.088" />
+				<item name="MotoHelmet_Black" chance="0.088" />
+				<item name="MotoHelmet_Yellow" chance="0.088" />
+				<item name="MotoHelmet_Red" chance="0.088" />
+				<item name="MotoHelmet_Blue" chance="0.088" />
+				<item name="MotoHelmet_Lime" chance="0.088" />
+				<item name="MotoHelmet_Grey" chance="0.088" />
+				<item name="DarkMotoHelmet_Red" chance="0.044" />
+				<item name="DarkMotoHelmet_Grey" chance="0.044" />
+				<item name="DarkMotoHelmet_Black" chance="0.044" />
+				<item name="DarkMotoHelmet_Green" chance="0.044" />
+				<item name="DarkMotoHelmet_Yellow" chance="0.044" />
+				<item name="DarkMotoHelmet_Blue" chance="0.044" />
+				<item name="DarkMotoHelmet_Lime" chance="0.044" />
+				<item name="DarkMotoHelmet_White" chance="0.044" />
 		</attachments>
 		<attachments chance="0.20" name="vestsPress">
 				<item name="PressVest_Blue" chance="0.25" />
