@@ -124,7 +124,7 @@ h3 { font: 600 0.78rem var(--body); letter-spacing: 0.14em; text-transform: uppe
 .split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; margin-bottom: 1rem; }
 .split:not(:has(.media)) { grid-template-columns: 1fr; }
 .media { position: relative; aspect-ratio: 4 / 3; background: radial-gradient(ellipse at 50% 55%, #1a1a1a, #0d0d0d 70%); border: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
-.media img { width: 100%; height: 100%; object-fit: contain; padding: 6%; }
+.media img { width: 100%; height: 100%; object-fit: contain; padding: 2%; }
 .media model-viewer { width: 100%; height: 100%; --poster-color: transparent; }
 .media-empty { width: 100%; height: 100%; display: grid; place-items: center; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
   background-image: linear-gradient(#161616 1px, transparent 1px), linear-gradient(90deg, #161616 1px, transparent 1px); background-size: 32px 32px; background-position: center; }
@@ -207,3 +207,4 @@ table.data { width: 100%; border-collapse: collapse; font-variant-numeric: tabul
 /* Cell grids: each cell draws its own edge so unfilled row space stays empty */
 .tiles, .facts, .carried, .recoil { border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .tile, .stat, .carried li, .recoil figure { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.facts:not(:has(.stat)) { display: none; }
