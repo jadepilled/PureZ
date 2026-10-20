@@ -3,9 +3,9 @@
     python dayz_prune.py <git folder>              # dry run: shows what would go, sizes only
     python dayz_prune.py <git folder> --apply      # delete, move, and write the sample set
 
-<git folder> is the repository root that holds the unpacked game folders (DZ, Scripts, ...),
-for example F:\\PureZ\\site\\PureZ. Only the unpacked game folders are touched; the repository's own
-files (missions, tools, .git, .github) are never read or removed.
+<git folder> is the repository root that holds the unpacked game folders (DZ, scripts, gui, bin,
+core, graphics, languagecore, system, ...), for example F:\\PureZ\\site\\PureZ. Only those game folders
+are touched; the repository's own files (missions, tools, fonts, .git, .github) are never read or removed.
 
 What happens to each file:
 
@@ -39,7 +39,7 @@ SAMPLES = ["weapons/firearms/akm/akm.p3d", "gear/clothing/hoodie/hoodie.p3d", "g
            "vehicles/wheeled/offroadhatchback/offroadhatchback.p3d", "structures/residential/house/house1w01.p3d",
            "weapons/firearms/m4a1/m4a1.p3d", "gear/containers/backpack_courier.p3d", "characters/heads/male/head.p3d"]
 # game folders that may sit in the repository root after unpacking; anything else at root is left alone
-GAME_ROOTS = {"dz", "scripts", "addons", "dta", "languagecore", "data", "mpmissions", "bliss", "worlds"}
+GAME_ROOTS = {"dz", "scripts", "addons", "dta", "bin", "core", "graphics", "gui", "languagecore", "system", "data", "mpmissions", "bliss", "worlds"}
 
 
 def norm(p):
