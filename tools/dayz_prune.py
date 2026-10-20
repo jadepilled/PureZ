@@ -57,6 +57,8 @@ def classify(rel, size):
 
     if "/worlds/" in f"/{r}" and "/data/layers/" in r and name.startswith("s_") and name.endswith("_lco.paa"):
         return "data"
+    if "/worlds/" in f"/{r}" and name in ("config.cpp", "config.bin"):   # world configs: place names
+        return "data"
     if ext in DATA_EXT and not any(d in f"/{r}" for d in DATA_SKIP_DIRS) and size <= DATA_MAX_BYTES:
         return "data"
     if "/gui/" in f"/{r}" and ext in {".edds", ".paa", ".imageset"}:
