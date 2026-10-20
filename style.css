@@ -126,15 +126,17 @@ a { color: inherit; }
   text-transform: uppercase;
   color: var(--grey);
 }
-.tags i { font-style: normal; color: var(--red); padding: 0 0.6em; }
+.tags span { color: var(--red-hi); }
 .scroll {
   position: absolute;
   bottom: 2rem;
+  display: block;
+  line-height: 0;
   color: var(--grey);
   text-decoration: none;
-  font-size: 1.5rem;
+  transition: color 0.15s, transform 0.15s;
 }
-.scroll:hover { color: var(--white); }
+.scroll:hover { color: var(--white); transform: translateY(3px); }
 
 h2 {
   font-family: var(--head);
@@ -196,6 +198,7 @@ kbd {
 }
 .pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
 .pill.on { color: var(--white); }
+.pill-age { display: block; margin-top: 0.3rem; text-align: right; font-size: 0.72rem; color: var(--muted); }
 .pill.on::before { background: var(--ok); box-shadow: 0 0 0 3px rgba(60, 207, 110, 0.18); }
 .srv-pop b { font-family: var(--head); font-weight: 900; font-size: 2.4rem; line-height: 1; }
 .srv-pop b small { font-size: 1rem; color: var(--grey); font-weight: 800; }

@@ -3,7 +3,8 @@
 (() => {
   const STATUS_URL = "https://raw.githubusercontent.com/jadepilled/PureZ/status/status.json";
   const RANGES = { "24h": 24 * 3600, "7d": 7 * 24 * 3600 };
-  const STALE_AFTER = 30 * 60;
+  const FRESH = 20 * 60;            // a poll this recent is shown without an age
+  const STALE_AFTER = 12 * 3600;    // older than this and we stop guessing
   const list = document.getElementById("server-list");
   if (!list) return;
 
@@ -22,6 +23,7 @@
   const clock = (t, withDay) => new Date(t * 1000).toLocaleString([], withDay
     ? { weekday: "short", hour: "2-digit", minute: "2-digit" }
     : { hour: "2-digit", minute: "2-digit" });
+  const ago = (sec) => sec < 3600 ? `${Math.max(1, Math.round(sec / 60))} min ago` : `${Math.round(sec / 3600)} h ago`;
 
   async function getJSON(url) {
     const r = await fetch(url, { cache: "no-store" });
@@ -93,14 +95,19 @@
     const soon = srv.status !== "live";
     const c = el("article", "srv" + (soon ? " soon" : ""));
     const now = Date.now() / 1000;
-    const stale = !st || !updated || now - updated > STALE_AFTER;
+    const age = st && updated ? now - updated : Infinity;
+    const stale = age > STALE_AFTER;
     const online = !soon && st && st.online && !stale;
 
     const top = el("div", "srv-top");
     top.append(el("span", "srv-map", srv.map));
+    const status = el("span");
     const pill = el("span", "pill" + (online ? " on" : ""),
       soon ? "Coming soon" : online ? "Online" : stale ? "Status unavailable" : "Offline");
-    top.append(pill);
+    status.append(pill);
+    // the poller runs on a GitHub schedule that often fires hours apart: say how old the reading is
+    if (!soon && !stale && age > FRESH) status.append(el("span", "pill-age", `checked ${ago(age)}`));
+    top.append(status);
     c.append(top);
 
     if (soon) return c;
