@@ -12,7 +12,7 @@
   --head: "Helvetica Now Display", "Helvetica Now Text", "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --body: "Blender Pro", "Blender", "Barlow", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  --nav-h: 64px;
+  --nav-h: 56px;
   --gutter: clamp(16px, 4vw, 48px);
 }
 
@@ -46,7 +46,7 @@ a { color: inherit; }
   line-height: 1;
 }
 .logo span, .wordmark span { color: var(--red); }
-.logo { font-size: 1.75rem; }
+.logo { font-size: 1.4rem; }
 
 /* Nav */
 .nav {
@@ -65,7 +65,7 @@ a { color: inherit; }
 .nav nav { display: flex; gap: 1.75rem; margin-left: auto; }
 .nav nav a {
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
