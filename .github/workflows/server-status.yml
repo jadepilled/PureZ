@@ -3,13 +3,18 @@ name: Server status
 # Queries every live server in the homepage's servers.json and publishes
 # status.json (current population + 7-day history) to the `status` branch,
 # which purez.gg reads.
+#
+# GitHub runs cron schedules late and infrequently (hours apart on a quiet repo),
+# so one run polls every 5 minutes for almost six hours, then starts the next run
+# itself. The hourly cron only restarts the chain if it ever breaks.
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: server-status
@@ -17,25 +22,35 @@ concurrency:
 jobs:
   poll:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 358
     steps:
       - uses: actions/checkout@v4
 
-      - name: Query servers
+      - name: Poll every 5 minutes
+        env:
+          PUSH_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
         run: |
           git fetch --depth 1 origin gh-pages
           git show origin/gh-pages:servers.json > /tmp/servers.json
           if git fetch --depth 1 origin status 2>/dev/null; then
             git show origin/status:status.json > /tmp/status.json || true
           fi
-          python3 tools/server_status.py /tmp/servers.json /tmp/status.json
-
-      - name: Publish to status branch
-        run: |
-          mkdir -p /tmp/out && cp /tmp/status.json /tmp/out/ && cd /tmp/out
+          mkdir -p /tmp/out && cd /tmp/out
           git init -q -b status
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add status.json
-          git commit -q -m "Server status"
-          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" status
+          end=$(( $(date +%s) + 350 * 60 ))
+          while [ "$(date +%s)" -lt "$end" ]; do
+            python3 "$GITHUB_WORKSPACE/tools/server_status.py" /tmp/servers.json /tmp/status.json
+            cp /tmp/status.json /tmp/out/status.json
+            git add status.json
+            git commit -q -m "Server status" || true
+            git push -q -f "$PUSH_URL" status || echo "push failed, will retry next poll"
+            sleep 300
+          done
+
+      - name: Start the next run
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run server-status.yml -R "$GITHUB_REPOSITORY" || echo "could not dispatch; the hourly cron will restart polling"
