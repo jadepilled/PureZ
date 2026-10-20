@@ -1,0 +1,173 @@
+ambient[]={0.81200033,0.78500038,0.72600049,1};
+diffuse[]={0.81200033,0.78500038,0.72600049,1};
+forcedDiffuse[]={0,0,0,0};
+emmisive[]={0,0,0,1};
+specular[]={0.50196081,0.50196081,0.50196081,1};
+specularPower=100;
+PixelShaderID="Multi";
+VertexShaderID="Multi";
+class TexGen0
+{
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class TexGen1
+{
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class TexGen2
+{
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class TexGen3
+{
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class TexGen4
+{
+	uvSource="tex1";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class TexGen5
+{
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class TexGen6
+{
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class TexGen7
+{
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class Stage0
+{
+	texture="dz\structures\data\metal\metal_green_paint_co.paa";
+	texGen="0";
+};
+class Stage1
+{
+	texture="dz\structures\data\metal\coalplant_precipatormetal_02_co.paa";
+	texGen="1";
+};
+class Stage2
+{
+	texture="dz\structures\data\metal\metal_rust_green_co.paa";
+	texGen="2";
+};
+class Stage3
+{
+	texture="dz\structures_bliss\military\houses\data\g_house_misc_co.paa";
+	texGen="3";
+};
+class Stage4
+{
+	texture="dz\structures_sakhal\military\storage\data\warhead_storage_entrance_roof_detail1_mask.paa";
+	texGen="4";
+	Filter="Point";
+};
+class Stage5
+{
+	texture="dz\structures\data\metal\coalplant_precipatormetal_02_dtsmdi.paa";
+	texGen="0";
+};
+class Stage6
+{
+	texture="dz\structures\data\metal\coalplant_precipatormetal_02_dtsmdi.paa";
+	texGen="1";
+	Filter="Point";
+};
+class Stage7
+{
+	texture="dz\structures\data\metal\metal_rust_green_dtsmdi.paa";
+	texGen="2";
+};
+class Stage8
+{
+	texture="dz\structures_bliss\military\houses\data\g_house_misc_dtsmdi.paa";
+	texGen="3";
+};
+class Stage9
+{
+	texture="dz\structures_sakhal\military\storage\data\warhead_storage_entrance_roof_detail1_mc.paa";
+	texGen="4";
+};
+class Stage10
+{
+	texture="dz\structures_sakhal\military\storage\data\warhead_storage_entrance_roof_detail1_ads.paa";
+	texGen="4";
+};
+class Stage11
+{
+	texture="dz\structures\data\metal\metal_green_paint_nohq.paa";
+	texGen="0";
+};
+class Stage12
+{
+	texture="dz\structures\data\metal\coalplant_precipatormetal_02_nohq.paa";
+	texGen="1";
+};
+class Stage13
+{
+	texture="dz\structures\data\metal\metal_rust_green_nohq.paa";
+	texGen="2";
+};
+class Stage14
+{
+	texture="dz\structures_bliss\military\houses\data\g_house_misc_nohq.paa";
+	texGen="3";
+};

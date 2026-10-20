@@ -1,0 +1,9 @@
+surfaceInfo="dz\data\data\penetration\ice.bisurf";
+ambient[]={0.741,0.741,0.79100001,1};
+diffuse[]={0.741,0.741,0.79100001,1};
+forcedDiffuse[]={0,0,0,0};
+emmisive[]={0,0,0,1};
+specular[]={0,0,0,1};
+specularPower=1;
+PixelShaderID="Normal";
+VertexShaderID="Basic";

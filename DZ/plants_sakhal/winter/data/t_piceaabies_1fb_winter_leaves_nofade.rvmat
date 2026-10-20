@@ -1,0 +1,45 @@
+ambient[]={1.205,1.205,1.205,1};
+diffuse[]={1.5,1.5,1.5,1};
+forcedDiffuse[]={0.20200001,0.20200001,0.20200001,1};
+emmisive[]={0,0,0,0};
+specular[]={0.035294119,0.035294119,0.035294119,0.2};
+specularPower=300;
+plantWind[]={0.1,0.34999999,60.5,1.35};
+PixelShaderID="Tree";
+VertexShaderID="TreeNoFade";
+class Stage1
+{
+	texture="dz\plants_sakhal\winter\data\t_piceaabies_winter_leaves_no.paa";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+class Stage2
+{
+	texture="dz\plants_sakhal\winter\data\t_piceaabies_leaves_simple_mca.paa";
+	uvSource="tex1";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+class Stage4
+{
+	texture="dz\plants_sakhal\winter\data\t_piceaabies_leaves_windmask_co.paa";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};

@@ -1,0 +1,58 @@
+ambient[]={0.90000004,0.62099999,0.21000001,0.5};
+diffuse[]={0.5,0.5,0.5,1.5};
+forcedDiffuse[]={0.11100001,0.10000002,0.50000107,0.215};
+emmisive[]={0.0101,0.0101,0.0101,0.1};
+specular[]={0.050999999,0.050999999,0.050999999,0.0099999998};
+specularPower=100;
+PixelShaderID="TreeAdv";
+VertexShaderID="TreeAdv";
+plantWind[]={0.079999998,0.30000001,0.25999999,0.5};
+class Stage1
+{
+	texture="dz\plants_sakhal\latefall\data\t_betulae2w_latefall_lod4_no.paa";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+class Stage2
+{
+	texture="#(argb,8,8,3)color(0.8,0.8,0.8,1,MCA)";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+treeColorization[]={-0.079999998,-25,8,0};
+class Stage3
+{
+	texture="dz\plants_sakhal\dark\data\t_piceaabies_dark_lod1_dxt5.paa";
+	uvSource="WorldPos";
+	class uvTransform
+	{
+		aside[]={256,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+class Stage4
+{
+	texture="#(argb,8,8,3)color(1,1,1,1,CO)";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};

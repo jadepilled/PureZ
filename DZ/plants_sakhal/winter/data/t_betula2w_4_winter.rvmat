@@ -1,0 +1,57 @@
+ambient[]={0.91360003,0.65109998,0.41,0.2};
+diffuse[]={1.7,1.7,1.7,1.1};
+forcedDiffuse[]={0.5011,0.11,0.591021,0.40000001};
+emmisive[]={0.001,0.001,0.001,0.1};
+specular[]={0.1,0.1,0.1,0.0099999998};
+specularPower=10;
+PixelShaderID="TreeAdv";
+VertexShaderID="TreeAdv";
+plantWind[]={0.1,0.2,10.8,10.5};
+class Stage1
+{
+	texture="dz\plants_sakhal\winter\data\t_betula2w_1_winter_no.paa";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+class Stage2
+{
+	texture="#(argb,8,8,3)color(0.75,0.72,0.7900,1,MCA)";
+	uvSource="tex1";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+class Stage3
+{
+	texture="dz\plants_sakhal\dark\data\t_piceaabies_dark_lod1_dxt5.paa";
+	uvSource="WorldPos";
+	class uvTransform
+	{
+		aside[]={256,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+class Stage4
+{
+	texture="dz\plants_sakhal\latefall\data\t_betula2w_1_windmask_co.paa";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};

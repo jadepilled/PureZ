@@ -1,0 +1,86 @@
+ambient[]={0.02,0.56,0.15000001,0.15000001};
+diffuse[]={0.2,0.2,0.2,1};
+forcedDiffuse[]={0,0,0,1};
+emmisive[]={0,0,0,1};
+specular[]={0.30000001,0.30000001,0.30000001,1};
+specularPower=50;
+degAngleTopProjectionStart=65;
+degAngleTopProjectionEnd=85;
+treeAllowProjectionLayer=1;
+projectionVector[]={0,1,0.050000001};
+PixelShaderID="TreeAdvTrunk";
+VertexShaderID="TreeAdvTrunk";
+plantWind[]={0.050000001,0.60000002,0.94999999,0.5};
+class Stage1
+{
+	texture="dz\plants\tree\data\t_betulapendula_3f_trunk_nohq.paa";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class Stage2
+{
+	texture="#(argb,8,8,3)color(1,1,1,1,MCA)";
+	uvSource="tex1";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+treeColorization[]={-0.30000001,-10,20,0};
+class Stage3
+{
+	texture="dz\plants\tree\data\t_piceaabies_trunk_dxt5.paa";
+	uvSource="WorldPos";
+	class uvTransform
+	{
+		aside[]={256,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+class Stage4
+{
+	texture="#(argb,8,8,3)color(1,1,0.3,1,smdi)";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={0.050000001,0.2,0};
+		up[]={0.69999999,-0.050000001,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class Stage5
+{
+	texture="dz\surfaces_sakhal\data\objects\sakhal_snow_2_ca.paa";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={0.050000001,0.2,0};
+		up[]={0.69999999,-0.050000001,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
+class Stage6
+{
+	texture="dz\surfaces_sakhal\data\objects\sakhal_snow_2_nohq.paa";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={0.050000001,0.2,0};
+		up[]={0.69999999,-0.050000001,0};
+		dir[]={0,0,1};
+		pos[]={0,0,0};
+	};
+};
